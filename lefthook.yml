@@ -1,0 +1,32 @@
+pre-commit:
+  jobs:
+    - name: ruff-format
+      glob: "*.py"
+      run: uv run ruff format --exit-non-zero-on-format {staged_files}
+      stage_fixed: true
+      tags:
+        - ruff
+        - formatter
+
+    - name: prettier-markdown
+      glob: "*.md"
+      run: npx prettier --write {files} && git add {staged_files}
+      stage_fixed: true
+      tags:
+        - prettier
+        - formatter
+
+    # @TODO: Taplo for toml
+
+    - name: ruff-fix
+      glob: "*.py"
+      run: uv run ruff check --fix --exit-non-zero-on-fix {staged_files}
+      stage_fixed: true
+      tags:
+        - ruff
+        - fixer
+
+    - name: pyright
+      run: uv run pyright
+      tags:
+        - pyright

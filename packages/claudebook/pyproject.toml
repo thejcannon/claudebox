@@ -1,0 +1,26 @@
+[project]
+name = "claudebook"
+version = "0.1.0"
+description = "Claudebook"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "claudomation",
+    "python-dotenv>=1.0.1",
+    "pyyaml>=6.0.2",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+]
+
+[project.scripts]
+claudebook = "claudebook:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv.sources]
+claudomation = { workspace = true }

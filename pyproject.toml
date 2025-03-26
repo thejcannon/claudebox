@@ -1,0 +1,72 @@
+[project]
+name = "claudebox"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "claudebook",
+    "claudomation",
+    "mmcp-client",
+]
+
+[tool.uv]
+dev-dependencies = [
+    "lefthook>=1.11.3",
+    "ruff>=0.11.1",
+    "pyright>=1.1.393",
+    "pytest>=8.3.5",
+    "pytest-asyncio>=0.26.0",
+]
+
+[tool.uv.workspace]
+members = ["packages/*"]
+
+[tool.uv.sources]
+claudomation = { workspace = true }
+mmcp-client = { workspace = true }
+claudebook = { workspace = true }
+
+[tool.pytest.ini_options]
+addopts = "-p pytest_asyncio"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 120
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.ruff.lint]
+preview = true
+explicit-preview-rules = true
+select = ["ALL"]
+# NB: Copied from `attrs`: https://github.com/python-attrs/attrs/blob/3dca08ce5bbe673d7df25f44f3dda92505d1043d/pyproject.toml#L199
+ignore = [
+  "A001",
+  "A002",
+  "A003",
+  "ANN",
+  "ARG",
+  "C901",
+  "COM",
+  "D",
+  "E501",
+  "ERA001",
+  "FBT",
+  "FIX",
+  "ISC001",
+  "N",
+  "PD",
+  "PLR0912",
+  "PLR0913",
+  "PLR0915",
+  "PLR2004",
+  "PLW0603",
+  "S101",
+  "S307",
+  "SLF001",
+  "TC",
+  "TD",
+  "TRY301",
+  "UP031",
+]
+
